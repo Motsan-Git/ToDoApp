@@ -81,20 +81,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:endIconDrawable="@drawable/baseline_date_range_24"
-        app:endIconMode="custom">
+        app:endIconMode="custom"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dateInput"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp" />
+            android:lines="2"
+            android:clickable="true"
+            android:focusable="false"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addtask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

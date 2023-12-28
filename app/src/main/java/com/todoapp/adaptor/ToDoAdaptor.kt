@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.todoapp.R
 import com.todoapp.model.ToDo
 
-class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context, itemView: Any) :
+class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context) :
     RecyclerView.Adapter<ToDoAdaptor.ViewHolder>() {
     inner class ViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
 
