@@ -15,8 +15,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
-        android:text="Add titel task"
-        android:textColor="#009688"
+        android:text="add titel task"
+        android:textColor="@color/pruple"
         android:textSize="20sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,8 +41,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="Add Description"
-        android:textColor="#009688"
+        android:text="add Description"
+        android:textColor="@color/pruple"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
 
@@ -69,8 +69,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="SetDate"
-        android:textColor="#009688"
+        android:text="set date"
+        android:textColor="@color/pruple"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         tools:ignore="DuplicateIds" />
@@ -80,32 +80,35 @@
         style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:endIconDrawable="@drawable/baseline_date_range_24"
-        app:endIconMode="custom"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="15dp">
+        android:layout_marginEnd="15dp"
+        app:endIconDrawable="@drawable/baseline_date_range_24"
+        app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dateInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="2"
             android:clickable="true"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:lines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/addtask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="25dp"
-        android:background="#E18064C8"
-        android:text="Add Task"
-        android:textColor="#E81995"
+        android:backgroundTint="@color/pruple"
+        android:text="add task"
+        android:textColor="@color/red"
         android:textSize="20sp"
+        app:cornerRadius="50dp"
+
+
         tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

@@ -19,7 +19,7 @@
             android:id="@+id/itemViewCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#D79AE9F3">
+            android:background="@color/blu">
 
             <TextView
                 android:id="@+id/titleCardTV"
@@ -97,6 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/timeCardTV" />
 
             <CheckBox
+                android:textColor="@color/black"
                 android:id="@+id/isDone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
