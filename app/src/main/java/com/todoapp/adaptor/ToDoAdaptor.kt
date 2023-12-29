@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.todoapp.R
+import com.todoapp.fragment.binding
 import com.todoapp.model.ToDo
 
 class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context) :
@@ -23,6 +24,15 @@ class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context) :
         var timeTV = itemView.findViewById<TextView>(R.id.timeCardTV)
         var timeTB = itemView.findViewById<TextView>(R.id.timeCardTB)
         var isDoneCheckBox = itemView.findViewById<CheckBox>(R.id.isDone)
+        init {
+            isDoneCheckBox.setOnCheckedChangeListener{button, isSelected ->
+                if(isSelected){
+                    todoList.removeAt(adapterPosition)
+                   binding.recView.adapter!!.notifyDataSetChanged()
+
+                }
+            }
+        }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).

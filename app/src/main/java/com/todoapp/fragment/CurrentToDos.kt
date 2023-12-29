@@ -17,9 +17,9 @@ import com.todoapp.databinding.FragmentCurrentToDosBinding
 import com.todoapp.model.ToDo
 
 val todoList = mutableListOf<ToDo>()
+lateinit var binding: FragmentCurrentToDosBinding
 
 class CurrentToDos : Fragment() {
-    private lateinit var binding: FragmentCurrentToDosBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
