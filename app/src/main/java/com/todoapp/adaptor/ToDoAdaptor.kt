@@ -46,10 +46,10 @@ class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.apply {
-            timeTB.text=todoList[position].title
-            descriptionTB.text=todoList[position].title
-            dateTB.text=todoList[position].date
             timeTB.text=todoList[position].time
+            titleTV.text=todoList[position].title
+            descriptionTB.text=todoList[position].description
+            dateTB.text=todoList[position].date
             isDoneCheckBox.isChecked=todoList[position].isDone
         }
 

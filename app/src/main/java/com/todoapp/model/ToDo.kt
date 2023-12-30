@@ -1,5 +1,9 @@
 package com.todoapp.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
+
 data class ToDo(
     val title:String,
     val description:String,

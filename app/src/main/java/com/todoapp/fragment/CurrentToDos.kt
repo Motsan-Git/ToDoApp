@@ -31,8 +31,8 @@ class CurrentToDos : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addTaskBTN.setOnClickListener {
-            Navigation.findNavController(binding.addTaskBTN)
+        binding.addTaskCBTN.setOnClickListener {
+            Navigation.findNavController(binding.addTaskCBTN)
                 .navigate(R.id.action_currentToDos_to_addTask)
         }
         initrecView()

@@ -28,19 +28,20 @@ class AddTask : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dateInput.setOnClickListener{
-            Picker(parentFragmentManager,binding.dateInput)
+        binding.dateAITB.setOnClickListener{
+            Picker(parentFragmentManager,binding.dateAITB)
         }
-        binding.addtask.setOnClickListener {
+        binding.addtaskBTN.setOnClickListener {
             val newToDo = ToDo(
-                binding.titelInputEditText.editText?.text.toString(),
-                binding.descriptionInputET.editText?.text.toString(),
+                binding.titelITB.editText?.text.toString(),
+                binding.descrITB.editText?.text.toString(),
                 "$hour:$minet",
                 fulldate,
                 false
+
             )
             todoList.add(newToDo)
-            Navigation.findNavController(binding.addtask).navigate(R.id.action_addTask_to_currentToDos)
+            Navigation.findNavController(binding.addtaskBTN).navigate(R.id.action_addTask_to_currentToDos)
 
         }
     }

@@ -9,7 +9,7 @@
 
 
     <TextView
-        android:id="@+id/titelTV"
+        android:id="@+id/titelATV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -20,18 +20,19 @@
         android:textSize="20sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/titelInputEditText"
+        android:id="@+id/titelITB"
         style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/titelInput"
+            android:id="@+id/titelAITB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp" />
+            android:layout_marginEnd="15dp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -41,25 +42,26 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:text="add Description"
+        android:text="add description"
         android:textColor="@color/pruple"
         android:textSize="20sp"
         android:textStyle="bold|italic" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descriptionInputET"
+        android:id="@+id/descrITB"
         style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/descriptionInput"
+            android:id="@+id/descrAITB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="15dp"
-            android:lines="4" />
+            android:lines="4"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,7 +78,7 @@
         tools:ignore="DuplicateIds" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/dateInputET"
+        android:id="@+id/dateITB"
         style="?attr/textInputFilledStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -87,17 +89,18 @@
         app:endIconMode="custom">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/dateInput"
+            android:id="@+id/dateAITB"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="false"
-            android:lines="1" />
+            android:lines="1"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/addtask"
+        android:id="@+id/addtaskBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -107,8 +110,6 @@
         android:textColor="@color/red"
         android:textSize="20sp"
         app:cornerRadius="50dp"
-
-
         tools:ignore="TextContrastCheck" />
 
 </LinearLayout>

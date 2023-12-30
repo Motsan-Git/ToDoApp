@@ -26,7 +26,6 @@ class Picker(private var fragmentManager: FragmentManager, private var editText:
             editText.setText(result)
         }
     }
-
     private fun makeDatePicker() {
         val datePicker = MaterialDatePicker.Builder.datePicker().setTitleText("select date").build()
         datePicker.show(fragmentManager, "select date")
