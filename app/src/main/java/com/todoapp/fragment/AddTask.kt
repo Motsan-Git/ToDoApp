@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.todoapp.R
 import com.todoapp.databinding.FragmentAddTaskBinding
@@ -14,10 +16,12 @@ import com.todoapp.utils.Picker
 import com.todoapp.utils.fulldate
 import com.todoapp.utils.hour
 import com.todoapp.utils.minet
+import kotlinx.collections.immutable.mutate
+import kotlinx.coroutines.launch
 
 
 class AddTask : Fragment() {
-   private lateinit var binding: FragmentAddTaskBinding
+    private lateinit var binding: FragmentAddTaskBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,8 +32,8 @@ class AddTask : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.dateAITB.setOnClickListener{
-            Picker(parentFragmentManager,binding.dateAITB)
+        binding.dateAITB.setOnClickListener {
+            Picker(parentFragmentManager, binding.dateAITB)
         }
         binding.addtaskBTN.setOnClickListener {
             val newToDo = ToDo(
@@ -40,9 +44,17 @@ class AddTask : Fragment() {
                 false
 
             )
-            todoList.add(newToDo)
-            Navigation.findNavController(binding.addtaskBTN).navigate(R.id.action_addTask_to_currentToDos)
-
+            lifecycleScope.launch {
+                requireContext().dataStore.updateData {
+                    it.copy(
+                        it.todoList.mutate {
+                            it.add(newToDo)
+                        }
+                    )
+                }
+            }
+            Navigation.findNavController(binding.addtaskBTN)
+                .navigate(R.id.action_addTask_to_currentToDos)
         }
     }
 }
