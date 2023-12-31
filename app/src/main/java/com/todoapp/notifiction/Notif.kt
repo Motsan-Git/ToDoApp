@@ -10,11 +10,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.Build.VERSION_CODES
 import android.os.Build.VERSION_CODES.S
+import android.util.Log
 import androidx.annotation.RequiresApi
 import com.todoapp.model.ToDo
 import java.util.Calendar
 
-@RequiresApi(VERSION_CODES.S)
+@RequiresApi(Build.VERSION_CODES.S)
 class Notif(
     var name: String,
     var description: String,
@@ -27,24 +28,28 @@ class Notif(
         startNotification()
     }
 
-    @RequiresApi(Build.VERSION_CODES.S)
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun crateChannel(name: String, description: String) {
         val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(id, name, importance)
+        val channel = NotificationChannel(id.toString(), name, importance)
         channel.description = description
         val notificationManager = context.getSystemService(NotificationManager::class.java)
         notificationManager.createNotificationChannel(channel)
     }
     private fun startNotification() {
         val calender = Calendar.getInstance()
-        calender.set(Calendar.HOUR_OF_DAY, (todo.time).split(":")[0].toInt())
+        calender.set(Calendar.HOUR, (todo.time).split(":")[0].toInt())
         calender.set(Calendar.MINUTE, (todo.time).split(":")[1].toInt())
-        calender.set(Calendar.DAY_OF_MONTH, (todo.date).split("/")[2].toInt())
-        calender.set(Calendar.MONTH, (todo.date).split("/")[1].toInt())
-        calender.set(Calendar.YEAR, (todo.date).split("/")[0].toInt())
+        calender.set(Calendar.SECOND, 0)
+        calender.set(Calendar.MILLISECOND, 0)
+        calender.set(Calendar.DAY_OF_MONTH, (todo.date).split("/")[0].toInt())
+        calender.set(Calendar.MONTH, (todo.date).split("/")[1].toInt()-1)
+        calender.set(Calendar.YEAR, (todo.date).split("/")[2].toInt())
+        Log.d("calender", "calender ID: $calender")
+
 
         val notifIntent = Intent(context, Notifreceiver::class.java)
-        notifIntent.putExtra("id", id)
+        notifIntent.putExtra("id" , id)
         val alarmManager = context.getSystemService(ALARM_SERVICE) as AlarmManager
 
         if (alarmManager.canScheduleExactAlarms()) {

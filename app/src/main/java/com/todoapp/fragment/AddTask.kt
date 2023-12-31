@@ -1,17 +1,20 @@
 package com.todoapp.fragment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.todoapp.R
 import com.todoapp.databinding.FragmentAddTaskBinding
 import com.todoapp.model.ToDo
+import com.todoapp.notifiction.Notif
 import com.todoapp.utils.Picker
 import com.todoapp.utils.fulldate
 import com.todoapp.utils.hour
@@ -30,6 +33,7 @@ class AddTask : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.dateAITB.setOnClickListener {
@@ -53,6 +57,7 @@ class AddTask : Fragment() {
                     )
                 }
             }
+            Notif(newToDo.title,newToDo.description,requireContext(),newToDo.hashCode().toString(),newToDo)
             Navigation.findNavController(binding.addtaskBTN)
                 .navigate(R.id.action_addTask_to_currentToDos)
         }
