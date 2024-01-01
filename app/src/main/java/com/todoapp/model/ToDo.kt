@@ -11,4 +11,6 @@ data class ToDo(
     val date:String,
     val isDone:Boolean
 
-)
+) {
+
+}

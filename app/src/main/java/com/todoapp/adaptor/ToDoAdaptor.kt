@@ -51,9 +51,6 @@ class ToDoAdaptor(var todoList: MutableList<ToDo>, var context: Context) :
                                     }
                                 )
                             }
-                            //binding.recView.adapter!!.notifyItemRemoved(adapterPosition)
-                            // این جا برای حذف آنی کارد خودمون با کلیک بر ایز دان مشکل داشتم و برای حل مشکلم این کارو کردن
-                            //کد قبی هم موجود گذاشتم تا شاید در آینده مشکل رو متوجه شدم
                         }
 
                     }

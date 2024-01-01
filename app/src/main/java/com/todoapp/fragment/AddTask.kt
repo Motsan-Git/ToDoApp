@@ -18,7 +18,8 @@ import com.todoapp.notifiction.Notif
 import com.todoapp.utils.Picker
 import com.todoapp.utils.fulldate
 import com.todoapp.utils.hour
-import com.todoapp.utils.minet
+import com.todoapp.utils.minute
+
 import kotlinx.collections.immutable.mutate
 import kotlinx.coroutines.launch
 
@@ -43,7 +44,7 @@ class AddTask : Fragment() {
             val newToDo = ToDo(
                 binding.titelITB.editText?.text.toString(),
                 binding.descrITB.editText?.text.toString(),
-                "$hour:$minet",
+                "$hour:$minute",
                 fulldate,
                 false
 
