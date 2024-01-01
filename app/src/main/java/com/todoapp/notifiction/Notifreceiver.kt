@@ -1,7 +1,7 @@
 package com.todoapp.notifiction
 
-import android.app.NotificationManager
 import android.content.BroadcastReceiver
+import android.content.ClipDescription
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -11,10 +11,13 @@ import com.todoapp.R
 import com.todoapp.fragment.dataStore
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import android.app.NotificationManager as NotificationManager
 
 class Notifreceiver : BroadcastReceiver() {
+
     override fun onReceive(context: Context, intent: Intent) {
         val currentId = intent.extras!!.getString("id")
+
 
         val notificationManager =
             context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -23,23 +26,26 @@ class Notifreceiver : BroadcastReceiver() {
             context: Context?,
             id: String,
             titel: String,
-            desc: String,
-            notificationManager: NotificationManager,
+            description: String,
+            notificationManager: NotificationManager
         ) {
-            val notification = NotificationCompat.Builder(context!!, id)
+            val notification = NotificationCompat.Builder(context!!, currentId.toString())
                 .setSmallIcon(R.drawable.baseline_access_alarms_24)
                 .setContentTitle(titel)
-                .setContentText(desc).setPriority(NotificationCompat.PRIORITY_HIGH).build()
+                .setContentText(description).setPriority(NotificationCompat.PRIORITY_HIGH).build()
             notificationManager.notify(id.toInt(), notification)
+
         }
+
         runBlocking {
+
             val currentTodo = context.dataStore.data.first().todoList.find {
-                it.hashCode() == currentId!!.toInt()
+                it.hashCode() == currentId?.toInt()
             }
 
             createNotification(
                 context,
-                currentTodo.toString(),
+                currentId.toString(),
                 currentTodo!!.title,
                 currentTodo.description,
                 notificationManager

@@ -1,13 +1,17 @@
+import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.kotlin.plugin.serialization")
 
 }
 
 android {
-    buildFeatures{
+
+    buildFeatures {
         viewBinding = true
+
     }
     namespace = "com.todoapp"
     compileSdk = 34
@@ -38,14 +42,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+   dataBinding{
+       enable=true
+
+   }
+
 }
 
 dependencies {
-    implementation ("androidx.datastore:datastore:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5")
-    implementation ("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
-    implementation ("androidx.navigation:navigation-fragment-ktx:$2.7.6")
-    implementation ("androidx.navigation:navigation-ui-ktx:$2.7.6")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation("androidx.navigation:navigation-fragment-ktx:$2.7.6")
+    implementation("androidx.navigation:navigation-ui-ktx:$2.7.6")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
