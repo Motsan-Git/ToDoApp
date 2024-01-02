@@ -9,10 +9,10 @@ import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.todoapp.model.ToDo
 import java.util.Calendar
-
 
 
 @RequiresApi(Build.VERSION_CODES.S)
@@ -27,14 +27,17 @@ class Notif(
         crateChannel(name, description)
         startNotification()
     }
+    private fun crateChannel(name: String, description: String) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val importance = NotificationManager.IMPORTANCE_HIGH
+            val channel = NotificationChannel(id, name, importance)
+            channel.description = description
+            val notifManager = context.getSystemService(NotificationManager::class.java)
+            notifManager.createNotificationChannel(channel)}
+        else{
+            Toast.makeText(context,"Device version is lower than Oreo. Notification will be sent without a channel.",Toast.LENGTH_LONG).show()
+        }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    private fun crateChannel(name: String, description: String, ) {
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        val channel = NotificationChannel(id, name, importance)
-        channel.description = description
-        val notifManager = context.getSystemService(NotificationManager::class.java)
-        notifManager.createNotificationChannel(channel)
     }
 
     private fun startNotification() {
@@ -55,7 +58,7 @@ class Notif(
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP, calender.timeInMillis, PendingIntent.getBroadcast(
                     context, id.toInt(), notifIntent, PendingIntent.FLAG_IMMUTABLE
-            )
+                )
             )
         }
     }
