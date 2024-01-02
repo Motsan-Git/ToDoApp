@@ -1,5 +1,6 @@
 package com.todoapp.notifiction
 
+import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.ClipDescription
 import android.content.Context
@@ -7,6 +8,7 @@ import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
+import androidx.navigation.NavDeepLinkBuilder
 import com.todoapp.R
 import com.todoapp.fragment.dataStore
 import kotlinx.coroutines.flow.first
@@ -16,6 +18,8 @@ import android.app.NotificationManager as NotificationManager
 class Notifreceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
+        val pendingIntent = NavDeepLinkBuilder(context).setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.currentToDos).createPendingIntent()
         val currentId = intent.extras!!.getString("id")
 
 
@@ -27,12 +31,14 @@ class Notifreceiver : BroadcastReceiver() {
             id: String,
             titel: String,
             description: String,
-            notificationManager: NotificationManager
+            notificationManager: NotificationManager,
+            pendingIntent: PendingIntent
         ) {
             val notification = NotificationCompat.Builder(context!!, currentId.toString())
                 .setSmallIcon(R.drawable.baseline_access_alarms_24)
                 .setContentTitle(titel)
-                .setContentText(description).setPriority(NotificationCompat.PRIORITY_HIGH).build()
+                .setContentText(description).setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent).build()
             notificationManager.notify(id.toInt(), notification)
 
         }
@@ -48,7 +54,8 @@ class Notifreceiver : BroadcastReceiver() {
                 currentId.toString(),
                 currentTodo!!.title,
                 currentTodo.description,
-                notificationManager
+                notificationManager,
+                pendingIntent
             )
         }
     }
